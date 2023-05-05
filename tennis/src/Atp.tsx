@@ -98,7 +98,9 @@ export function Atp() {
     return <div>Loading...</div>;
   } else {
     return (
-      <div>
+      <div
+        className={`inline-flex flex-col text-left px-4 py-3 rounded-md border-100 border-transparent`}
+      >
         <h3>
           {name}, {birthYear}, GrandSlams: {title}
         </h3>

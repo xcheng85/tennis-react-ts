@@ -65,3 +65,14 @@ use case2: mannualy register dom events
     component is re-renderer if parent re-renderer
     virtual dom change detection
     avoid re-render of component that fetches data/have heavy compotation
+
+## CSS
+Tailwind 
+
+npm i -D tailwindcss
+npm i -D postcss
+npm i -D autoprefixer
+
+npx tailwindcss init -p
+
+tailwind directives in index.css
