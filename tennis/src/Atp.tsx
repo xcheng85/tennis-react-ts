@@ -1,13 +1,13 @@
-// define prop type
-
-import { useEffect, useReducer } from 'react';
-import { getAtpPlayers } from './getPlayers';
+import { useEffect, useReducer, useRef, useMemo, useCallback } from 'react';
+import { getAtpPlayers, generateBotAtpPlayers } from './getPlayers';
+import { Equipment } from './Equipment';
 
 // state in one single object
 type State = {
   name: string | undefined;
   birthYear: number;
   title: number;
+  loading: boolean;
 };
 
 // type is used to do implicient type deduction
@@ -35,7 +35,12 @@ type Action =
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'init':
-      return { name: action.name, title: action.title, birthYear: action.birthYear };
+      return {
+        name: action.name,
+        title: action.title,
+        birthYear: action.birthYear,
+        loading: false,
+      };
     case 'increaseTitle':
       // spread syntex, copy
       return { ...state, title: state.title + 1 };
@@ -55,10 +60,12 @@ export function Atp() {
     name: undefined,
     birthYear: 0,
     title: 0,
+    loading: true,
   };
   // [state, dispatch]
-  const [{ name, birthYear, title }, dispatch] = useReducer(reducer, initState);
-  //
+  const [{ name, birthYear, title, loading }, dispatch] = useReducer(reducer, initState);
+  // HTMLButtonElement is react typescript types for html elements
+  const buttonRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     getAtpPlayers().then((p) => {
       // update state value is not immediate, wait for the next renderer
@@ -66,17 +73,41 @@ export function Atp() {
       dispatch({ type: 'init', name, birthYear, title });
     });
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      //: HTMLButtonElement | null
+      // optional chaining operator
+      buttonRef.current?.focus();
+    }
+  }, [loading]);
+
+  const f = useMemo(() => generateBotAtpPlayers(10000), []);
+
+  // without memo
+  // function handleEquipment() {
+  //   // to do
+  // }
+  const handleEquipment = useCallback(() => {
+    // to do
+    // did not render during profiling session
+  }, []);
+
   // no dom
-  if (name && birthYear && title !== undefined) {
+  if (loading) {
+    return <div>Loading...</div>;
+  } else {
     return (
       <div>
         <h3>
           {name}, {birthYear}, GrandSlams: {title}
         </h3>
-        <button onClick={() => dispatch({ type: 'increaseTitle' })}>WinGrandSlam</button>
+        <button ref={buttonRef} onClick={() => dispatch({ type: 'increaseTitle' })}>
+          WinGrandSlam
+        </button>
+        <p>{f.length}</p>
+        <Equipment onClick={handleEquipment}></Equipment>
       </div>
     );
-  } else {
-    return null;
   }
 }

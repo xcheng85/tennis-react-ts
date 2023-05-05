@@ -49,3 +49,19 @@ use case2: mannualy register dom events
     state is organized in one object
     define action type: union of all supported action
     a reducer function for state changes; for complex usage
+
+3. ref hook
+    usage: access HTML elements
+    imperitive move focus to a html element
+    1. syntax: useRef
+    2. change without re-render
+
+4. memo hook
+    usage: computationally heavy
+    1. syntax: useMemo
+
+5. callback hook + memo function
+    usage: prevent unnecessary re-render of child components
+    component is re-renderer if parent re-renderer
+    virtual dom change detection
+    avoid re-render of component that fetches data/have heavy compotation
