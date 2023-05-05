@@ -66,6 +66,10 @@ use case2: mannualy register dom events
     virtual dom change detection
     avoid re-render of component that fetches data/have heavy compotation
 
+6. useParams hook. 
+    usage: component to fetch the params from the routers
+    1. syntax: useParams
+
 ## CSS
 Tailwind 
 
@@ -84,7 +88,18 @@ npm i react-router-dom
 
 route: path + component
 
+Link, NavLink: navigation
+NavLink: more style options
+
+nested routes + Parent/Child Component (React Router's Outlet component)
+route parameters, useParams hook
+
+
 ## HTML Element
 html list item,
 unique key prop: react efficient
 <li>
+
+header 
+h1
+nav

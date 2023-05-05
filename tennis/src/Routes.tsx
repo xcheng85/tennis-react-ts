@@ -1,12 +1,31 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import { Header } from './Header';
 import { PlayersPage } from './pages/PlayersPage';
+import { PlayerPage } from './pages/PlayerPage';
 
 // RouteObjects
 const router = createBrowserRouter([
   {
-    path: 'players',
-    element: <PlayersPage />, // react element
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        // nested routes
+        path: 'players',
+        element: <PlayersPage />, // react element
+      },
+      {
+        // routes with param
+        path: 'players/:id',
+        element: <PlayerPage />, // react element
+      },
+    ],
   },
+  //   {
+  //     path: 'players',
+  //     element: <PlayersPage />, // react element
+  //   },
 ]);
 
 // Routes component
