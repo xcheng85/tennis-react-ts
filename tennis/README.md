@@ -76,3 +76,15 @@ npm i -D autoprefixer
 npx tailwindcss init -p
 
 tailwind directives in index.css
+
+
+## Router
+React Router is a library 
+npm i react-router-dom
+
+route: path + component
+
+## HTML Element
+html list item,
+unique key prop: react efficient
+<li>
