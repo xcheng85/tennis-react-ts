@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import { Header } from './Header';
+import { HomePage } from './pages/HomePage';
 import { PlayersPage } from './pages/PlayersPage';
 import { PlayerPage } from './pages/PlayerPage';
 import { ErrorPage } from './pages/ErrorPage';
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
       {
         // nested routes
         path: 'players',
