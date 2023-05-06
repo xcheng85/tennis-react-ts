@@ -69,6 +69,8 @@ use case2: mannualy register dom events
 6. useParams hook. 
     usage: component to fetch the params from the routers
     1. syntax: useParams
+7. useRouteError hook
+    usage: react router error
 
 ## CSS
 Tailwind 
@@ -94,6 +96,13 @@ NavLink: more style options
 
 nested routes + Parent/Child Component (React Router's Outlet component)
 route parameters, useParams hook
+
+## Custom Error Page
+errorElement of router
+useRouteError hook
+
+## Typescript
+1. type predicate function
 
 ## HTML Element
 html list item,

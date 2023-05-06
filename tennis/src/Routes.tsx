@@ -3,12 +3,14 @@ import App from './App';
 import { Header } from './Header';
 import { PlayersPage } from './pages/PlayersPage';
 import { PlayerPage } from './pages/PlayerPage';
+import { ErrorPage } from './pages/ErrorPage';
 
 // RouteObjects
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         // nested routes
