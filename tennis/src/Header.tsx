@@ -37,10 +37,13 @@ export function Header() {
         ></input>
       </form> */}
       <Link to="">
-        <h1>Tennis System</h1>
+        <h1>Tennis Wiki</h1>
       </Link>
       <nav>
         <NavLink to="players">ATP Players</NavLink>
+        <NavLink to="admin" className={`border-solid border-b-2`}>
+          Admin
+        </NavLink>
       </nav>
     </header>
   );

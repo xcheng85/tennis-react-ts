@@ -71,6 +71,10 @@ use case2: mannualy register dom events
     1. syntax: useParams
 7. useRouteError hook
     usage: react router error
+8. useSearchParams hook
+    get and set qs of router
+9. useNavigate hook
+    usage: programmatically navigate components, such as: search
 
 ## CSS
 Tailwind 
@@ -97,12 +101,24 @@ NavLink: more style options
 nested routes + Parent/Child Component (React Router's Outlet component)
 route parameters, useParams hook
 
+Index Routes: 
+a child in route with index field: true
+
+routing query string: useSearchParams hook
+
+navigate imperitively: useNavigate hook for search
+
 ## Custom Error Page
 errorElement of router
 useRouteError hook
 
 ## Typescript
 1. type predicate function
+2. nullish coalescing operator ??
+
+## Form
+1. html form
+2. react Form: much simpler
 
 ## HTML Element
 html list item,
@@ -112,3 +128,16 @@ unique key prop: react efficient
 header 
 h1
 nav
+
+React: FormEvent
+native js: FormData
+
+className="relative text-right": form upper right corner
+
+## Performance Optimization
+lazy loading: fallback during downloading the page
+default export is pre-requisite
+webpack: separate bundle
+react Suspense component
+
+Slow3G in chrome dev tools

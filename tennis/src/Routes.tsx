@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import { Header } from './Header';
@@ -6,6 +7,7 @@ import { PlayersPage } from './pages/PlayersPage';
 import { PlayerPage } from './pages/PlayerPage';
 import { ErrorPage } from './pages/ErrorPage';
 
+const AdminPage = lazy(() => import('./pages/AdminPage'));
 // RouteObjects
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
         // routes with param
         path: 'players/:id',
         element: <PlayerPage />, // react element
+      },
+      {
+        path: 'admin',
+        element: (
+          <Suspense fallback={<div>Lazy Loading...</div>}>
+            <AdminPage />
+          </Suspense>
+        ),
       },
     ],
   },
