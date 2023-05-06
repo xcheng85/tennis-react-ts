@@ -6,6 +6,8 @@ import { HomePage } from './pages/HomePage';
 import { PlayersPage } from './pages/PlayersPage';
 import { PlayerPage } from './pages/PlayerPage';
 import { ErrorPage } from './pages/ErrorPage';
+import { ConfirmPage } from './pages/ConfirmPage';
+import { AddPlayer } from './pages/AddPlayer';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 // RouteObjects
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
             <AdminPage />
           </Suspense>
         ),
+      },
+      {
+        path: 'confirm/:name',
+        element: <ConfirmPage />,
+      },
+      {
+        path: '/addPlayer',
+        element: <AddPlayer />,
       },
     ],
   },

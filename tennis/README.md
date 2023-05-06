@@ -75,7 +75,8 @@ use case2: mannualy register dom events
     get and set qs of router
 9. useNavigate hook
     usage: programmatically navigate components, such as: search
-
+10. useForm hook
+    usage: for form validation and submission
 ## CSS
 Tailwind 
 
@@ -117,8 +118,17 @@ useRouteError hook
 2. nullish coalescing operator ??
 
 ## Form
+tailwind pulgin for style form
+npm i -D @tailwindcss/forms
+
 1. html form
 2. react Form: much simpler
+3. React hook form: (extra react lib)
+    1. complex validation
+    2. submission logic
+    3. optimized avoid re-render
+
+    npm i react-hook-form
 
 ## HTML Element
 html list item,
