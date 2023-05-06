@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { players } from '../data/players';
 
 export function PlayersPage() {
@@ -7,7 +8,10 @@ export function PlayersPage() {
       <ul>
         {players.map((p) => (
           <li key={p.id}>
-            {p.lastName} {p.lastName}
+            {/* /players/:id */}
+            <Link to={`${p.id}`}>
+              {p.lastName} {p.lastName}
+            </Link>
           </li>
         ))}
       </ul>

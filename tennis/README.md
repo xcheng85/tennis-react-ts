@@ -89,11 +89,11 @@ npm i react-router-dom
 route: path + component
 
 Link, NavLink: navigation
+Link: relative component path
 NavLink: more style options
 
 nested routes + Parent/Child Component (React Router's Outlet component)
 route parameters, useParams hook
-
 
 ## HTML Element
 html list item,
