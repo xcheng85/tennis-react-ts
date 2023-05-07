@@ -11,7 +11,10 @@ type Player = {
 
 export function AddPlayer() {
   // formState has a field errors which contains all the current validation errors.
-  const { register, handleSubmit, formState } = useForm<Player>();
+  const { register, handleSubmit, formState } = useForm<Player>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+  });
   const navigate = useNavigate();
   // React Hook Form will call this funtion after validation
   function onSubmit(p: Player) {

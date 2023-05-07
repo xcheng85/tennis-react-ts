@@ -127,7 +127,7 @@ npm i -D @tailwindcss/forms
     1. complex validation: FieldError
     2. submission logic
     3. optimized avoid re-render
-
+    4. auto validation mouse lose focus
 
     npm i react-hook-form
 
