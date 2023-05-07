@@ -124,9 +124,10 @@ npm i -D @tailwindcss/forms
 1. html form
 2. react Form: much simpler
 3. React hook form: (extra react lib)
-    1. complex validation
+    1. complex validation: FieldError
     2. submission logic
     3. optimized avoid re-render
+
 
     npm i react-hook-form
 
