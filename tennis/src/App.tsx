@@ -1,17 +1,21 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import logo from './logo.svg';
 import './App.css';
 import { Header } from './Header';
 import { Wta } from './Wta';
 import { Atp } from './Atp';
-import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      {/* react fragments */}
-      <Header />
-      <Outlet />
+      <Provider store={store}>
+        {/* react fragments */}
+        <Header />
+        <Outlet />
+      </Provider>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

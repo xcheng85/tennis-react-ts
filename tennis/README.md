@@ -152,3 +152,19 @@ webpack: separate bundle
 react Suspense component
 
 Slow3G in chrome dev tools
+
+
+## State Management
+1. Prop drilling: Parent pass down to child component
+2. Context feature in react
+3. Redux. 
+
+npm i @reduxjs/toolkit react-redux
+
+    1. immutable object: store
+    2. state is updated through dispatch action
+    3. reducer + action --> update state
+
+    4. Provider component: input prop is store, 
+        this component enables all the child component to access store
+

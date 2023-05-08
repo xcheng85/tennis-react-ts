@@ -1,7 +1,19 @@
 import { FormEvent } from 'react';
 import { Link, NavLink, useSearchParams, useNavigate, Form } from 'react-router-dom';
+// redux state
+import { useSelector, useDispatch } from 'react-redux';
+import { StoreState } from './store/store';
+import {
+  authenticateAction,
+  authenticatedAction,
+  authorizeAction,
+  authorizedAction,
+} from './store/userSlice';
+import { authenticate } from './api/authenticate';
+import { authorize } from './api/authorize';
 
 export function Header() {
+  // navigate route by params
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   function handleSearch(e: FormEvent<HTMLFormElement>) {
@@ -15,8 +27,32 @@ export function Header() {
     // setSearchParams({ search });
     navigate(`/players/?search=${search}`);
   }
+  // store state selection
+  // first .user is state slice
+  const user = useSelector((state: StoreState) => state.user.user);
+  const loading = useSelector((state: StoreState) => state.user.loading);
+  const dispatch = useDispatch();
+  async function handleSignInClick() {
+    dispatch(authenticateAction());
+    const authenticatedUser = await authenticate();
+    dispatch(authenticatedAction(authenticatedUser));
+    if (authenticatedUser !== undefined) {
+      dispatch(authorizeAction());
+      const authorizedRoles = await authorize(authenticatedUser.id);
+      dispatch(authorizedAction(authorizedRoles));
+    }
+  }
   return (
     <header>
+      <div>
+        {user ? (
+          <span className="font-bold">{user.name} has signed in</span>
+        ) : (
+          <button onClick={handleSignInClick} disabled={loading}>
+            {loading ? '...' : 'Sign in'}
+          </button>
+        )}
+      </div>
       <Form className="relative text-right" action="/players">
         <input
           className="text-gray-700"
