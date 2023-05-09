@@ -168,3 +168,19 @@ npm i @reduxjs/toolkit react-redux
     4. Provider component: input prop is store, 
         this component enables all the child component to access store
 
+
+## Integration with REST API
+1. Native way
+2. React Router 
+2. React Query
+
+3. Mock with json-server
+npm i -D json-server
+4. env var for rest endpoints
+
+
+1. type assertion to strongly type the data from REST API.
+
+
+## for .env to work
+REACT_APP_ prefix is a must

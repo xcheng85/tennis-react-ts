@@ -77,6 +77,7 @@ export function Header() {
       </Link>
       <nav>
         <NavLink to="players">ATP Players</NavLink>
+        <NavLink to="brands">Tennis Brands</NavLink>
         <NavLink to="admin" className={`border-solid border-b-2`}>
           Admin
         </NavLink>

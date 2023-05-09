@@ -8,6 +8,7 @@ import { PlayerPage } from './pages/PlayerPage';
 import { ErrorPage } from './pages/ErrorPage';
 import { ConfirmPage } from './pages/ConfirmPage';
 import { AddPlayer } from './pages/AddPlayer';
+import { BrandsPage } from './brands/BrandsPage';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 // RouteObjects
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
       {
         path: '/addPlayer',
         element: <AddPlayer />,
+      },
+      {
+        // nested routes
+        path: 'brands',
+        element: <BrandsPage />, // react element
       },
     ],
   },

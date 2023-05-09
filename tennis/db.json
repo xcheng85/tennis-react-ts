@@ -1,0 +1,14 @@
+{
+    "brands": [
+        {
+            "id": 0,
+            "name": "Wilson",
+            "origin": "Chicago, USA"
+        },
+        {
+            "id": 1,
+            "name": "Bablot",
+            "origin": "France"
+        }
+    ]
+}
