@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom'; // hooker to access the loaded data
+import { useEffect, useState, Suspense } from 'react';
+import { useLoaderData, Await } from 'react-router-dom'; // hooker to access the loaded data
 import { getBrands, assertIsBrands } from './getBrands'; // think of it as di in angular
 import { addBrand } from './addBrands'; // think of it as di in angular
 import { Brand, NewBrandPayload } from './types';
@@ -8,9 +8,13 @@ import { NewBrandForm } from './NewBrandForm';
 
 // use react native state management
 export function BrandsPage() {
-  const brands = useLoaderData();
-  assertIsBrands(brands);
+  // no delay
+  //   const brands = useLoaderData();
+  //   assertIsBrands(brands);
 
+  // with delay
+  const data = useLoaderData();
+  assertIsData(data);
   //   // initial loading state is true;
   //   // setIsLoading like dispatch actin
   //   const [isLoading, setIsLoading] = useState(true);
@@ -44,8 +48,34 @@ export function BrandsPage() {
   return (
     <div>
       <h2>All Tennis Brands</h2>
-      <BrandsList brands={brands} />
+      {/* for non-defer */}
+      {/* <BrandsList brands={brands} /> */}
       <NewBrandForm onSave={handleSave} />
+      <Suspense fallback={<div>Fetching...</div>}>
+        <Await resolve={data.brands}>
+          {(brands) => {
+            assertIsBrands(brands);
+            return <BrandsList brands={brands} />;
+          }}
+        </Await>
+      </Suspense>
     </div>
   );
+}
+
+// loader: async () => defer({ brands: getBrands() }),
+type Data = {
+  brands: Brand[];
+};
+
+export function assertIsData(data: unknown): asserts data is Data {
+  if (typeof data !== 'object') {
+    throw new Error("Data isn't an object");
+  }
+  if (data === null) {
+    throw new Error('Data is null');
+  }
+  if (!('brands' in data)) {
+    throw new Error("data doesn't contain brands");
+  }
 }

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, defer } from 'react-router-dom';
 import App from './App';
 import { Header } from './Header';
 import { HomePage } from './pages/HomePage';
@@ -53,7 +53,8 @@ const router = createBrowserRouter([
         // nested routes
         path: 'brands',
         element: <BrandsPage />, // react element
-        loader: getBrands, // react router loading data
+        // async defer to improve the performance in case getBrands took long time to complete
+        loader: async () => defer({ brands: getBrands() }), // react router loading data
       },
     ],
   },
