@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getBrands } from './getBrands'; // think of it as di in angular
-import { Brand } from './types';
+import { addBrand } from './addBrands'; // think of it as di in angular
+import { Brand, NewBrandPayload } from './types';
 import { BrandsList } from './BrandsList'; // parent-child component
+import { NewBrandForm } from './NewBrandForm';
 
 // use react native state management
 export function BrandsPage() {
@@ -24,6 +26,14 @@ export function BrandsPage() {
     };
   }, []);
 
+  // here async is due to addBrand
+  async function handleSave(payload: NewBrandPayload) {
+    const newBrand = await addBrand(payload);
+    // state is updated, ui is updated.
+    // this is like reducer. state change
+    setBrands([newBrand, ...brands]);
+  }
+
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -31,6 +41,7 @@ export function BrandsPage() {
     <div>
       <h2>All Tennis Brands</h2>
       <BrandsList brands={brands} />
+      <NewBrandForm onSave={handleSave} />
     </div>
   );
 }

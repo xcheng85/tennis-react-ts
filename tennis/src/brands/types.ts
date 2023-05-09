@@ -3,3 +3,12 @@ export type Brand = {
   name: string;
   origin: string;
 };
+
+export type NewBrandPayload = {
+  name: string;
+  origin: string;
+};
+
+export type NewBrandSuccessResponse = {
+  id: number;
+};
