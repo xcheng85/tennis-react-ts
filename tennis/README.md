@@ -77,6 +77,9 @@ use case2: mannualy register dom events
     usage: programmatically navigate components, such as: search
 10. useForm hook
     usage: for form validation and submission
+11. useLoadData hook
+    usage: react router do the data loading
+    component use the hook to fetch data
 ## CSS
 Tailwind 
 
@@ -170,8 +173,15 @@ npm i @reduxjs/toolkit react-redux
 
 
 ## Integration with REST API
-1. Native way
-2. React Router 
+1. fetch api
+2. React Router: 
+    1. useLoadData hook
+    2. rest api is completed before rendering the component
+    3. downside: require a mannual refresh to see the updates
+
+3. Deferer react router 
+
+
 2. React Query
 
 3. Mock with json-server

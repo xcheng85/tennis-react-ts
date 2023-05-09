@@ -9,6 +9,7 @@ import { ErrorPage } from './pages/ErrorPage';
 import { ConfirmPage } from './pages/ConfirmPage';
 import { AddPlayer } from './pages/AddPlayer';
 import { BrandsPage } from './brands/BrandsPage';
+import { getBrands } from './brands/getBrands';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 // RouteObjects
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
         // nested routes
         path: 'brands',
         element: <BrandsPage />, // react element
+        loader: getBrands, // react router loading data
       },
     ],
   },
