@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider, defer } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
 import { Header } from './Header';
 import { HomePage } from './pages/HomePage';
@@ -12,6 +13,10 @@ import { BrandsPage } from './brands/BrandsPage';
 import { getBrands } from './brands/getBrands';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
+
+// for react-query
+// QueryClientProvider is a JSX.element, react component
+const queryClient = new QueryClient();
 // RouteObjects
 const router = createBrowserRouter([
   {
@@ -66,6 +71,11 @@ const router = createBrowserRouter([
 
 // Routes component
 // router is the prop of RouterProvider component
+// all the routes can access to React Query
 export function Routes() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }

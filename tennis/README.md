@@ -180,9 +180,16 @@ npm i @reduxjs/toolkit react-redux
     3. downside: require a mannual refresh to see the updates
 
 3. Deferer react router 
+    1. improve user experience with no delay for component rendering
 
 
-2. React Query
+4. React Query
+    1. cache api 
+    2. install: npm install @tanstack/react-query
+    3. Provider component wrap up components which needs to access the data where the provider component manages.(cache included)
+    4. useQuery hook. read
+    5. useMutation hook. update
+    6. React Query assumes data is stale when browser regains focus
 
 3. Mock with json-server
 npm i -D json-server

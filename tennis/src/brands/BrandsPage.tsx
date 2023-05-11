@@ -1,5 +1,6 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useLoaderData, Await } from 'react-router-dom'; // hooker to access the loaded data
+import { useQuery } from '@tanstack/react-query'; // useQuery hooker to get data
 import { getBrands, assertIsBrands } from './getBrands'; // think of it as di in angular
 import { addBrand } from './addBrands'; // think of it as di in angular
 import { Brand, NewBrandPayload } from './types';
@@ -12,9 +13,30 @@ export function BrandsPage() {
   //   const brands = useLoaderData();
   //   assertIsBrands(brands);
 
-  // with delay
-  const data = useLoaderData();
-  assertIsData(data);
+  // method3: useQuery hook from react-query
+  //   TData = TQueryFnData, TQueryKey extends QueryKey = QueryKey,
+  // query key is ['brands']
+  // TData is getBrands
+  // alias data to be brands, more readability
+  const { isLoading, isFetching, data: brands, isError } = useQuery(['brands'], getBrands);
+  if (isLoading || brands === undefined) {
+    return <div>Loading ...</div>;
+  }
+  return (
+    <div>
+      <h2>All Tennis Brands</h2>
+      {/* for non-defer */}
+      {/* <BrandsList brands={brands} /> */}
+      <NewBrandForm onSave={handleSave} />
+      {isFetching ? <div>Fetching...</div> : <BrandsList brands={brands} />}
+    </div>
+  );
+
+  // method2: with delay
+  // const data = useLoaderData();
+  // assertIsData(data);
+
+  // method1: useEffect
   //   // initial loading state is true;
   //   // setIsLoading like dispatch actin
   //   const [isLoading, setIsLoading] = useState(true);
@@ -45,22 +67,22 @@ export function BrandsPage() {
   //   if (isLoading) {
   //     return <div>Loading ...</div>;
   //   }
-  return (
-    <div>
-      <h2>All Tennis Brands</h2>
-      {/* for non-defer */}
-      {/* <BrandsList brands={brands} /> */}
-      <NewBrandForm onSave={handleSave} />
-      <Suspense fallback={<div>Fetching...</div>}>
-        <Await resolve={data.brands}>
-          {(brands) => {
-            assertIsBrands(brands);
-            return <BrandsList brands={brands} />;
-          }}
-        </Await>
-      </Suspense>
-    </div>
-  );
+  // return (
+  //   <div>
+  //     <h2>All Tennis Brands</h2>
+  //     {/* for non-defer */}
+  //     {/* <BrandsList brands={brands} /> */}
+  //     <NewBrandForm onSave={handleSave} />
+  //     <Suspense fallback={<div>Fetching...</div>}>
+  //       <Await resolve={data.brands}>
+  //         {(brands) => {
+  //           assertIsBrands(brands);
+  //           return <BrandsList brands={brands} />;
+  //         }}
+  //       </Await>
+  //     </Suspense>
+  //   </div>
+  // );
 }
 
 // loader: async () => defer({ brands: getBrands() }),
