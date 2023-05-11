@@ -59,7 +59,15 @@ const router = createBrowserRouter([
         path: 'brands',
         element: <BrandsPage />, // react element
         // async defer to improve the performance in case getBrands took long time to complete
-        loader: async () => defer({ brands: getBrands() }), // react router loading data
+        // loader: async () => defer({ brands: getBrands() }), // react router loading data
+        loader: async () => {
+          // use queryClient to check if there is a cache exists, key must match
+          const brands = queryClient.getQueriesData(['brands']);
+          if (brands) {
+            return defer({ brands });
+          }
+          return defer({ brands: queryClient.fetchQuery(['brands'], getBrands) });
+        },
       },
     ],
   },
