@@ -175,6 +175,7 @@ npm i @reduxjs/toolkit react-redux
 ## Integration with REST API
 1. fetch api
 2. React Router: 
+    reduce number of re-renderer
     1. useLoadData hook
     2. rest api is completed before rendering the component
     3. downside: require a mannual refresh to see the updates
@@ -184,12 +185,16 @@ npm i @reduxjs/toolkit react-redux
 
 
 4. React Query
+    client side cache
     1. cache api 
     2. install: npm install @tanstack/react-query
     3. Provider component wrap up components which needs to access the data where the provider component manages.(cache included)
     4. useQuery hook. read
     5. useMutation hook. update
+    6. useQueryClient hook, access cached data
     6. React Query assumes data is stale when browser regains focus
+
+5. Combination of React Router and React Query
 
 3. Mock with json-server
 npm i -D json-server
