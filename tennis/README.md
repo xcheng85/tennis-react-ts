@@ -203,6 +203,10 @@ npm i -D json-server
 
 1. type assertion to strongly type the data from REST API.
 
+## Integration with GraphQL API
+1. feetch
+2. Apollo Client
+
 
 ## for .env to work
 REACT_APP_ prefix is a must

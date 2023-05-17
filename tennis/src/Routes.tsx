@@ -11,6 +11,8 @@ import { ConfirmPage } from './pages/ConfirmPage';
 import { AddPlayer } from './pages/AddPlayer';
 import { BrandsPage } from './brands/BrandsPage';
 import { getBrands } from './brands/getBrands';
+import { getAllPlayers } from './players/getAllPlayers';
+import { PlayersPageV2 } from './players/PlayersPage';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
@@ -67,6 +69,19 @@ const router = createBrowserRouter([
             return defer({ brands });
           }
           return defer({ brands: queryClient.fetchQuery(['brands'], getBrands) });
+        },
+      },
+      {
+        // nested routes
+        path: 'playersV2',
+        element: <PlayersPageV2 />, // react element
+        loader: async () => {
+          // use queryClient to check if there is a cache exists, key must match
+          const players = queryClient.getQueriesData(['players']);
+          if (players) {
+            return defer({ players });
+          }
+          return defer({ players: queryClient.fetchQuery(['players'], getAllPlayers) });
         },
       },
     ],
