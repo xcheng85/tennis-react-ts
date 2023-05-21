@@ -134,6 +134,15 @@ npm i -D @tailwindcss/forms
 
     npm i react-hook-form
 
+## React Form Usage with third-party components react-select
+https://blog.logrocket.com/react-hook-form-complete-guide/
+npm i react-select
+
+using a Controller component
+
+
+
+
 ## HTML Element
 html list item,
 unique key prop: react efficient
@@ -147,6 +156,11 @@ React: FormEvent
 native js: FormData
 
 className="relative text-right": form upper right corner
+
+button three type: 
+1. button
+2. submit: for form
+3. reset: clean
 
 ## Performance Optimization
 lazy loading: fallback during downloading the page
@@ -206,6 +220,7 @@ npm i -D json-server
 ## Integration with GraphQL API
 1. feetch
 2. Apollo Client
+
 
 
 ## for .env to work

@@ -11,8 +11,11 @@ import { ConfirmPage } from './pages/ConfirmPage';
 import { AddPlayer } from './pages/AddPlayer';
 import { BrandsPage } from './brands/BrandsPage';
 import { getBrands } from './brands/getBrands';
-import { getAllPlayers } from './players/getAllPlayers';
+import { getAllPlayers } from './api/getAllPlayers';
+import { getCountries } from './api/getCountries';
+import { getGenderTypes } from './api/getGenderTypes';
 import { PlayersPageV2 } from './players/PlayersPage';
+import { AddPlayerV2 } from './players/AddPlayerPage';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
@@ -77,11 +80,29 @@ const router = createBrowserRouter([
         element: <PlayersPageV2 />, // react element
         loader: async () => {
           // use queryClient to check if there is a cache exists, key must match
+          // key: players must be unique
           const players = queryClient.getQueriesData(['players']);
           if (players) {
             return defer({ players });
           }
           return defer({ players: queryClient.fetchQuery(['players'], getAllPlayers) });
+        },
+      },
+      {
+        path: '/addPlayerV2',
+        element: <AddPlayerV2 />,
+        loader: async () => {
+          // use queryClient to check if there is a cache exists, key must match
+          // key: countries must be unique
+          let countries: any = queryClient.getQueriesData(['countries']);
+          if (!countries) {
+            countries = queryClient.fetchQuery(['countries'], getCountries);
+          }
+          let genderTypes: any = queryClient.getQueriesData(['genderTypes']);
+          if (!genderTypes) {
+            genderTypes = queryClient.fetchQuery(['genderTypes'], getGenderTypes);
+          }
+          return defer({ countries, genderTypes });
         },
       },
     ],

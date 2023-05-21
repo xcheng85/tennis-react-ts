@@ -1,5 +1,5 @@
 // This component is reusable,
-import { Player } from './types';
+import { Player } from '../api/types';
 
 type Props = {
   players: Player[];
