@@ -1,3 +1,4 @@
+import { gql } from '@apollo/client';
 import { Country } from './addPlayer';
 
 // graphql type introspect
@@ -78,3 +79,17 @@ function assertIsGetCountriesResponse(response: any): asserts response is GetCou
     throw new Error('data.__type.enumValues is null');
   }
 }
+
+// tagged template literal, gql function
+// no () after query
+export const APOLLO_GET_COUNTRIES_QUERY = gql`
+  query {
+    __type(name: "Country") {
+      name
+      kind
+      enumValues {
+        name
+      }
+    }
+  }
+`;

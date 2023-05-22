@@ -1,5 +1,5 @@
 // graphql query api
-
+import { gql } from '@apollo/client';
 import { Player } from './types';
 
 export const GET_ALL_PLAYERS_QUERY = `
@@ -99,3 +99,17 @@ function assertIsGetAllPlayersResponse(response: any): asserts response is GetAl
     }
   });
 }
+
+// tagged template literal, gql function
+// no () after query
+export const APOLLO_GET_ALL_PLAYERS_QUERY = gql`
+  query {
+    players {
+      id
+      First
+      Last
+      Country
+      Gender
+    }
+  }
+`;

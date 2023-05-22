@@ -1,3 +1,5 @@
+import { gql } from '@apollo/client';
+
 export const ADD_PLAYER = `
   mutation ($first: String!, $last: String!, $country: Country!, $gender: GenderType!){
     addPlayer(player: {First: $first, Last: $last, Country: $country, Gender: $gender}){
@@ -49,3 +51,11 @@ export async function addPlayer(payload: addPlayerPayload) {
   const res = await response.json();
   console.info(res);
 }
+
+export const ADD_PLAYER_APOLLO = gql`
+  mutation ($first: String!, $last: String!, $country: Country!, $gender: GenderType!) {
+    addPlayer(player: { First: $first, Last: $last, Country: $country, Gender: $gender }) {
+      id
+    }
+  }
+`;

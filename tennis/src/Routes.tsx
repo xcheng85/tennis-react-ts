@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider, defer } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ApolloProvider, InMemoryCache, ApolloClient } from '@apollo/client';
 import App from './App';
 import { Header } from './Header';
 import { HomePage } from './pages/HomePage';
@@ -15,13 +16,20 @@ import { getAllPlayers } from './api/getAllPlayers';
 import { getCountries } from './api/getCountries';
 import { getGenderTypes } from './api/getGenderTypes';
 import { PlayersPageV2 } from './players/PlayersPage';
+import { PlayersPageApollo } from './players/PlayersPageApollo';
 import { AddPlayerV2 } from './players/AddPlayerPage';
+import { AddPlayerApollo } from './players/AddPlayerPageApollo';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
 // for react-query
 // QueryClientProvider is a JSX.element, react component
 const queryClient = new QueryClient();
+// Use Apollo
+const apolloQueryClient = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_URL!,
+  cache: new InMemoryCache(),
+});
 // RouteObjects
 const router = createBrowserRouter([
   {
@@ -89,6 +97,11 @@ const router = createBrowserRouter([
         },
       },
       {
+        // nested routes
+        path: 'playersApollo',
+        element: <PlayersPageApollo />, // react element
+      },
+      {
         path: '/addPlayerV2',
         element: <AddPlayerV2 />,
         loader: async () => {
@@ -105,6 +118,10 @@ const router = createBrowserRouter([
           return defer({ countries, genderTypes });
         },
       },
+      {
+        path: '/addPlayerApollo',
+        element: <AddPlayerApollo />,
+      },
     ],
   },
   //   {
@@ -115,11 +132,13 @@ const router = createBrowserRouter([
 
 // Routes component
 // router is the prop of RouterProvider component
-// all the routes can access to React Query
+// all the routes can access to React Query.
 export function Routes() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <ApolloProvider client={apolloQueryClient}>
+      {/* <QueryClientProvider client={queryClient}> */}
       <RouterProvider router={router} />
-    </QueryClientProvider>
+      {/* </QueryClientProvider> */}
+    </ApolloProvider>
   );
 }

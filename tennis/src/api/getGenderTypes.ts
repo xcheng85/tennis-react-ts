@@ -1,3 +1,4 @@
+import { gql } from '@apollo/client';
 import { GenderType } from './addPlayer';
 
 // graphql type introspect
@@ -69,3 +70,17 @@ function assertIsGetGenderTypeResponse(response: any): asserts response is GetGe
     throw new Error('data.__type.enumValues is null');
   }
 }
+
+// tagged template literal, gql function
+// no () after query
+export const APOLLO_GET_GENDERTYPES_QUERY = gql`
+  query {
+    __type(name: "GenderType") {
+      name
+      kind
+      enumValues {
+        name
+      }
+    }
+  }
+`;

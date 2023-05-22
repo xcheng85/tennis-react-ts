@@ -218,10 +218,12 @@ npm i -D json-server
 1. type assertion to strongly type the data from REST API.
 
 ## Integration with GraphQL API
-1. feetch
+1. fetch + react query
+
 2. Apollo Client
+npm i @apollo/ckuebt graphql
 
-
+both 1 and 2 has useQuery hook
 
 ## for .env to work
 REACT_APP_ prefix is a must
