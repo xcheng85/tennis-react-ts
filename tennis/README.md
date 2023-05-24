@@ -166,6 +166,9 @@ ul: HTML Lists unordered
 ol: ordered list
 li
 
+label: 
+Associating a <label> with a form control, such as <input> or <textarea> offers some major advantages:
+
 ## Performance Optimization
 lazy loading: fallback during downloading the page
 default export is pre-requisite
@@ -242,7 +245,8 @@ generic react props
     consumer decide how to render the data
     ReactNode: an element react can render
 
-
+4. state in generic component
+   useState hook
 
 
 

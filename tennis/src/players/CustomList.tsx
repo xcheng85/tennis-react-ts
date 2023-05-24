@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, ReactNode, useState } from 'react';
 
 type Props<Data> = {
   data: Data[];
@@ -8,6 +8,8 @@ type Props<Data> = {
   renderer?: (item: Data) => ReactNode; // how to render a data
 } & ComponentPropsWithoutRef<'ul'>;
 
+type IdValue = string | number; // line 38
+
 export function CustomList<Data>({
   data,
   id,
@@ -16,6 +18,17 @@ export function CustomList<Data>({
   renderer,
   ...ulProps
 }: Props<Data>) {
+  const [checkedDataIds, setCheckedDataIds] = useState<IdValue[]>([]);
+  // currying, fp, purpose is to pass in the checkedId, closure
+  // limitation is coming from the onChange event from html element
+  const handleCheckDataIdChange = (checkedDataId: IdValue) => () => {
+    const isChecked = checkedDataIds.includes(checkedDataId);
+    // if checked, then uncheck
+    const newCheckedDataIds = isChecked
+      ? checkedDataIds.filter((id) => id !== checkedDataId)
+      : [...checkedDataIds, checkedDataId];
+    setCheckedDataIds(newCheckedDataIds);
+  };
   return (
     <ul className="bg-gray-300 rounded p-10" {...ulProps}>
       {data.map((d) => {
@@ -33,8 +46,17 @@ export function CustomList<Data>({
         const s = d[secondary] as unknown;
         return (
           <li key={dataId} className="bg-white shadow rounded">
-            <div className="text-xl text-red-800">{p}</div>
-            {typeof s === 'string' && <div className="text-sm text-grey-200">{s}</div>}
+            <label className="flex item-center">
+              <input
+                type="checkbox"
+                checked={checkedDataIds.includes(dataId)}
+                onChange={handleCheckDataIdChange(dataId)}
+              ></input>
+              <div className="ml-2">
+                <div className="text-xl text-red-800">{p}</div>
+                {typeof s === 'string' && <div className="text-sm text-grey-200">{s}</div>}
+              </div>
+            </label>
           </li>
         );
       })}
