@@ -162,6 +162,10 @@ button three type:
 2. submit: for form
 3. reset: clean
 
+ul: HTML Lists unordered
+ol: ordered list
+li
+
 ## Performance Optimization
 lazy loading: fallback during downloading the page
 default export is pre-requisite
@@ -224,6 +228,23 @@ npm i -D json-server
 npm i @apollo/ckuebt graphql
 
 both 1 and 2 has useQuery hook
+useMutate hook
+
+## Generic React Component
+typescript generics
+generic react props
+
+1. component allow pass in data
+2. component allow pass in style
+     rest parameters
+    prop spread
+3. component allow pass in render prop
+    consumer decide how to render the data
+    ReactNode: an element react can render
+
+
+
+
 
 ## for .env to work
 REACT_APP_ prefix is a must

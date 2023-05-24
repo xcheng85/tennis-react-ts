@@ -19,6 +19,7 @@ import { PlayersPageV2 } from './players/PlayersPage';
 import { PlayersPageApollo } from './players/PlayersPageApollo';
 import { AddPlayerV2 } from './players/AddPlayerPage';
 import { AddPlayerApollo } from './players/AddPlayerPageApollo';
+import { PlayersProfile } from './players/PlayersProfilePage';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: '/addPlayerApollo',
         element: <AddPlayerApollo />,
+      },
+      {
+        path: '/PlayersProfile',
+        element: <PlayersProfile />,
       },
     ],
   },
