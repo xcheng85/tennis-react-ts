@@ -1,4 +1,4 @@
-import { CustomList } from './CustomList';
+import { CustomList } from '../components/CustomList';
 
 export function PlayersProfile() {
   return (

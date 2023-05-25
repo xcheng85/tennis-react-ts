@@ -1,0 +1,1 @@
+export type IdValue = string | number; // line 38

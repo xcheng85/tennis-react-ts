@@ -248,6 +248,10 @@ generic react props
 4. state in generic component
    useState hook
 
+5. custom hook
+   custom hook vs regular function
+   customm hook uses standard react hook
+   regular function does not 
 
 
 ## for .env to work

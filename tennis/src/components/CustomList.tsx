@@ -1,4 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode, useState } from 'react';
+// use custom hook
+import { useChecked } from './useChecked';
 
 type Props<Data> = {
   data: Data[];
@@ -8,8 +10,6 @@ type Props<Data> = {
   renderer?: (item: Data) => ReactNode; // how to render a data
 } & ComponentPropsWithoutRef<'ul'>;
 
-type IdValue = string | number; // line 38
-
 export function CustomList<Data>({
   data,
   id,
@@ -18,17 +18,7 @@ export function CustomList<Data>({
   renderer,
   ...ulProps
 }: Props<Data>) {
-  const [checkedDataIds, setCheckedDataIds] = useState<IdValue[]>([]);
-  // currying, fp, purpose is to pass in the checkedId, closure
-  // limitation is coming from the onChange event from html element
-  const handleCheckDataIdChange = (checkedDataId: IdValue) => () => {
-    const isChecked = checkedDataIds.includes(checkedDataId);
-    // if checked, then uncheck
-    const newCheckedDataIds = isChecked
-      ? checkedDataIds.filter((id) => id !== checkedDataId)
-      : [...checkedDataIds, checkedDataId];
-    setCheckedDataIds(newCheckedDataIds);
-  };
+  const { checkedDataIds, handleCheckDataIdChange } = useChecked();
   return (
     <ul className="bg-gray-300 rounded p-10" {...ulProps}>
       {data.map((d) => {
