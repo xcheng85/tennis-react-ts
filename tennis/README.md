@@ -253,6 +253,7 @@ generic react props
    customm hook uses standard react hook
    regular function does not 
 
+6. 
 
 ## for .env to work
 REACT_APP_ prefix is a must

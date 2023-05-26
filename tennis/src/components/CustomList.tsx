@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode, useState } from 'react';
+import { IdValue } from './types';
 // use custom hook
 import { useChecked } from './useChecked';
 
@@ -7,7 +8,9 @@ type Props<Data> = {
   id: keyof Data;
   primary: keyof Data;
   secondary: keyof Data;
-  renderer?: (item: Data) => ReactNode; // how to render a data
+  renderer?: (item: Data) => ReactNode; // how to customize render a data
+  checkedDataIds?: IdValue[]; // custom initial values
+  onCheckedDataIdsChange?: (checkedDataIds: IdValue[]) => void; // custom onChecked handler
 } & ComponentPropsWithoutRef<'ul'>;
 
 export function CustomList<Data>({
@@ -16,9 +19,14 @@ export function CustomList<Data>({
   primary,
   secondary,
   renderer,
+  checkedDataIds,
+  onCheckedDataIdsChange,
   ...ulProps
 }: Props<Data>) {
-  const { checkedDataIds, handleCheckDataIdChange } = useChecked();
+  const { resolvedCheckedDataIds, handleCheckDataIdChange } = useChecked({
+    checkedDataIds,
+    onCheckedDataIdsChange,
+  });
   return (
     <ul className="bg-gray-300 rounded p-10" {...ulProps}>
       {data.map((d) => {
@@ -39,7 +47,7 @@ export function CustomList<Data>({
             <label className="flex item-center">
               <input
                 type="checkbox"
-                checked={checkedDataIds.includes(dataId)}
+                checked={resolvedCheckedDataIds.includes(dataId)}
                 onChange={handleCheckDataIdChange(dataId)}
               ></input>
               <div className="ml-2">
