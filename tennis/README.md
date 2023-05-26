@@ -1,19 +1,21 @@
 # tennis-react-ts
-tennis system built with react and ts
+tennis system built with react and typescript
 
-## From scratch
+## Built project from scratch
 project scaffolding tools 
-
+```shell
 npx create-react-app tennis --template typescript
-
+```
 ### Linting
-Microsoft's ESLint ext
+Microsoft's ESLint vs code extension
 
 ### Formatting
+```shell
 npm install prettier -D
 npm install eslint-config-prettier eslint-plugin-prettier -D
 "plugin:prettier/recommended"
 touch .prettierrc.json
+```
 prettier options
 
 Prettier - Code formatter
@@ -22,15 +24,15 @@ look at setting.json for workspace config
 
 ### Build
 production
+```shell
 npm run build
-
+```
 ### chrome extension
 React Developer Tools
 components and profile
 
 ### Hooks
 all the hooks has rules
-
 
 1. effect hook 
 common use case: fetching data
@@ -253,7 +255,30 @@ generic react props
    customm hook uses standard react hook
    regular function does not 
 
-6. 
 
 ## for .env to work
 REACT_APP_ prefix is a must
+
+
+## Testing
+1. Jest (preinstalled in Create React App)
+    .test.ts: pure function
+    .test.tsx: components test
+
+    jest expect
+
+2. React Testing Library for component testing (preinstalled in Create React App)
+    jest-dom: query dom element
+    Dom element: role attributes,
+
+
+component testing
+
+
+
+companion package: 
+code coverage tool
+
+```shell
+npm run test
+```
